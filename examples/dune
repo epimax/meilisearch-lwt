@@ -1,0 +1,5 @@
+(executables
+ (names document_example index_example)
+ (libraries meilisearch-lwt lwt yojson ppx_deriving_yojson.runtime)
+ (preprocess
+  (pps ppx_deriving_yojson)))

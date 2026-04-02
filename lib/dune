@@ -1,0 +1,6 @@
+(library
+ (name meilisearch_lwt)
+ (public_name meilisearch-lwt)
+ (libraries lwt cohttp-lwt-unix yojson ppx_deriving_yojson.runtime)
+ (preprocess
+  (pps ppx_deriving_yojson)))

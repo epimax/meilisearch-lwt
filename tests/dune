@@ -1,0 +1,23 @@
+(tests
+ (names serialization_tests builders_tests)
+ (modules serialization_tests builders_tests)
+ (libraries
+  meilisearch-lwt
+  lwt
+  alcotest-lwt
+  yojson
+  ppx_deriving_yojson.runtime)
+ (preprocess
+  (pps ppx_deriving_yojson)))
+
+(executable
+ (name integration_tests)
+ (modules integration_tests)
+ (libraries
+  meilisearch-lwt
+  lwt
+  alcotest-lwt
+  yojson
+  ppx_deriving_yojson.runtime)
+ (preprocess
+  (pps ppx_deriving_yojson)))
