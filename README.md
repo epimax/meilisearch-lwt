@@ -2,6 +2,8 @@
 
 **An asynchronous OCaml client library for Meilisearch built on Lwt.**
 
+[Documentation](https://epimax.github.io/meilisearch-lwt/)
+
 This library was initially created with search and query workloads in mind.
 
 The Meilisearch HTTP API coverage is very partial, many endpoints are missing.
@@ -128,7 +130,8 @@ let create_idx_wait_tsk conn () =
     ~max_attempts:50
     ~delay:0.2
     idx_creation_task_id
-  in match task_c with
+  in
+  match task_c with
     | Ok t -> Lwt.return (Printf.printf "Index created, task: %d has status: %s\n"
         t.uid
       (Meilisearch_lwt.Task.task_status_to_string t.status))
@@ -186,9 +189,13 @@ let search_by_term conn index_uid term =
 ```
 
 Looking at examples/ and tests/ will give you more complete example for the Document, Search and Settings modules. Also check the documentation !
-If you want to run the examples, runs the index example first, it'll create the index needed to run the document example.
+If you want to run the examples, run the index example first, it'll create the index needed to run the document example.
 Subsequent launches of the index example are bound to fail, we do not remove the index at any point.
-Additionally, you need to set both environment variable: ```MEILISEARCH_URL``` & ```MEILISEARCH_API_KEY``` for the hostname and the master key.
+Additionally, you need to set both environment variables: ```MEILISEARCH_URL``` & ```MEILISEARCH_API_KEY``` for the hostname and the master key.
+
+## Documentation
+
+Documentation generated with Odoc is available here: https://epimax.github.io/meilisearch-lwt/.
 
 ## Errors
 
@@ -203,7 +210,7 @@ match result with
   | Error e -> Printf.printf "Failed: %s\n" (Meilisearch_lwt.Task.error_to_string e)
 ```
 
-For which you want to read the task fields, with the helpers provided in the Task module, while the error_to_string will just yield you the ```details``` field from Meilisearch payload.
+If you need to inspect specific task fields, the mandatory fields have been typed and are available in the Task.task record, other fields are available as ```Yojson.Safe.t```.
 
 ## Status
 
